@@ -15,11 +15,15 @@ module.exports = function (config) {
 
         // list of files / patterns to load in the browser
         files: [
+            // dependencies
             {pattern: 'bower_components/jquery/dist/jquery.js', included: false},
             {pattern: 'bower_components/underscore/underscore.js', included: false},
+            {pattern: 'bower_components/backbone/backbone.js', included: false},
+            {pattern: 'bower_components/chaplin/chaplin.js', included: false},
 
-            {pattern: 'src/main/**/*.js', included: false},
+            {pattern: 'src/main/*.js', included: false},
             {pattern: 'src/test/**/*Spec.js', included: false},
+
             'src/test/main-test.js'
         ],
 

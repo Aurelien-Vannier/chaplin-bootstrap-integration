@@ -6,7 +6,7 @@
     "avannier"
   ],
   "description": "Bootstrap integration in backbone/chaplin.",
-  "main": "chaplin-bootstrap-integration.js",
+  "main": "main-chaplin-bootstrap.js",
   "license": "MIT",
   "private": true,
   "ignore": [

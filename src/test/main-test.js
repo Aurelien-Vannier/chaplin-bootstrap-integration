@@ -10,16 +10,22 @@ for (var file in window.__karma__.files) {
 
 requirejs.config({
     // Karma serves files from '/base'
-    baseUrl: '/base',
+    baseUrl: '/base/src',
 
     paths: {
-        'jquery': 'bower_components/jquery/dist/jquery',
-        'underscore': 'bower_components/underscore/underscore'
+        'jquery': '../bower_components/jquery/dist/jquery',
+        'underscore': '../bower_components/underscore/underscore',
+        'backbone': '../bower_components/backbone/backbone',
+        'chaplin': '../bower_components/chaplin/chaplin'
     },
 
     shim: {
         'underscore': {
             exports: '_'
+        },
+        'backbone': {
+            deps: ['underscore', 'jquery'],
+            exports: 'Backbone'
         }
     },
 
