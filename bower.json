@@ -1,0 +1,23 @@
+{
+  "name": "chaplin-bootstrap-integration",
+  "version": "0.0.1",
+  "homepage": "https://github.com/akenny44/chaplin-bootstrap-integration",
+  "authors": [
+    "avannier"
+  ],
+  "description": "Bootstrap integration in backbone/chaplin.",
+  "main": "chaplin-bootstrap-integration.js",
+  "license": "MIT",
+  "private": true,
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "chaplin": "~1.0.1",
+    "jquery": "~2.1.1"
+  }
+}
