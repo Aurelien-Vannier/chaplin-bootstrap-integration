@@ -72,6 +72,8 @@
 
     });
 
+    /* Selectbox Item View */
+    /* =================== */
     Bootstrap.SelectboxItemView = Chaplin.View.extend({
         _super: Chaplin.View,
         autoRender: true,
@@ -85,10 +87,21 @@
                 throw '"labelAttribute" property must exist on model.';
             }
             this.label = attr.labelAttribute;
+
             if(_.isUndefined( this.model.get( attr.valueAttribute ) ) ){
                 throw '"valueAttribute" property must exist on model.';
             }
             this.attributes.value = this.model.get( attr.valueAttribute );
+
+            this.selected = attr.selected;
+        },
+
+        render: function(){
+            _super(this, 'render', arguments);
+
+            if( this.selected ){
+                this.$el.attr('selected', 'selected');
+            }
         },
 
         getTemplateData: function () {
@@ -96,10 +109,12 @@
         },
 
         getTemplateFunction: function() {
-            return _.template( '<a><%= label %></a>' );
+            return _.template( '<%= label %>' );
         }
     });
 
+    /* Selectbox View */
+    /* ============== */
     Bootstrap.SelectboxCollectionView = Chaplin.CollectionView.extend({
         _super:  Chaplin.CollectionView,
         autoRender: true,
@@ -121,14 +136,23 @@
                 if( attr.valueAttribute ){
                     this.valueAttribute = attr.valueAttribute;
                 }
+                if( attr.defaultValue ){
+                    this.defaultValue = attr.defaultValue;
+                }
             }
         },
 
         initItemView: function( model ){
+            var selected = false;
+            if( this.defaultValue && model.get(this.valueAttribute) == this.defaultValue ){
+                selected = true;
+                this.selectedModel = model;
+            }
             return new Bootstrap.SelectboxItemView( {
                 model : model,
                 labelAttribute : this.labelAttribute,
-                valueAttribute : this.valueAttribute
+                valueAttribute : this.valueAttribute,
+                selected: selected
             });
         },
 
@@ -139,6 +163,12 @@
 
         getSelectedModel: function(){
             return this.selectedModel;
+        },
+
+        setSelectedValue: function( value ){
+            this.$el.find('option:selected').removeAttr('selected');
+            this.$el.find('option[value='+value+']').attr('selected', 'selected');
+            this.itemSelected();
         }
     });
 

@@ -8,16 +8,31 @@ define(['chaplin','main/main-chaplin-bootstrap'], function(Chaplin,Bootstrap) {
         var firstLabel = 'First Label';
         var secondLabel = 'Second Label';
 
-        it('Handling default selected item', function () {
+        it('Select default item with value', function () {
+            var selectboxCollectionView = new Bootstrap.SelectboxCollectionView({
+                defaultValue : 2,
+                collection: new Chaplin.Collection([
+                    { label : firstLabel, value: 1 },
+                    { label : secondLabel, value: 2 }
+                ])
+            });
+
+            expect(selectboxCollectionView.getSelectedModel().get('value')).toEqual(2);
+        })
+
+        it('Select default item with value', function () {
             var selectboxCollectionView = new Bootstrap.SelectboxCollectionView({
                 collection: new Chaplin.Collection([
                     { label : firstLabel, value: 1 },
                     { label : secondLabel, value: 2 }
                 ])
-            })
-            expect(selectboxCollectionView.$el.find('option').length).toEqual(2);
+            });
 
+            selectboxCollectionView.setSelectedValue(2);
+
+            expect(selectboxCollectionView.getSelectedModel().get('value')).toEqual(2);
         })
+
     });
 
 });
